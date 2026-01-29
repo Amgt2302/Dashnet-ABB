@@ -1,0 +1,20 @@
+{
+  "name": "dashnet",
+  "version": "1.0.0",
+  "description": "Dashboard réseau Made by https://github.com/Amgt2302",
+  "main": "Server.js",
+  "scripts": {
+    "start": "node Server.js"
+  },
+  "keywords": [
+    "network",
+    "dashboard",
+    "nodejs",
+    "express"
+  ],
+  "author": "Amgt2302",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
