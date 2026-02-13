@@ -15,6 +15,7 @@
   "author": "Amgt2302",
   "license": "MIT",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "ping": "^1.0.0"
   }
 }
