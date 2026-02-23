@@ -1,17 +1,19 @@
 const express = require("express");
 const app = express();
 const ping = require("ping");
+const { exec } = require("child_process");
 
 const PORT = 7357;
 const IP_PREFIX = "172.16";
 const SUBNET_START = 0;
-const SUBNET_END = 2;
+const SUBNET_END = 3;
 const SCAN_INTERVAL = 10000;
 
 let lastScan = [];
 
 
 // --- FUNCTIONS --- \\
+
 const ipToNum = ip => {return ip.split('.').map(Number).reduce((acc, octet) => (acc << 8) + octet, 0) >>> 0;};
 
 // 1. Generate target IP list
@@ -24,6 +26,28 @@ function generateTargetIPs() {
     }
     return ips;
 }
+
+// 1.1 Get Mac Address
+function getMac(ip) {
+    return new Promise(resolve => {
+        const cmd = process.platform === 'win32' 
+            ? `arp -a ${ip}` 
+            : `ip neigh show to ${ip}`;
+
+        exec(cmd, (err, stdout) => {
+            if (!stdout) return resolve("Err");
+
+            const words = stdout.trim().split(/\s+/);
+            const foundMac = words.find(word => {
+                const sep = word.includes(':') ? ':' : '-';
+                return word.split(sep).length === 6 && word.length >= 11;
+            });
+
+            resolve(foundMac ? foundMac.toUpperCase() : "**");
+        });
+    });
+}
+
 
 // 2. Scan engine
 async function scanNetwork(concurrency = 100, timeoutSec = 1) {
@@ -39,19 +63,20 @@ async function scanNetwork(concurrency = 100, timeoutSec = 1) {
 
             try {
                 const res = await ping.promise.probe(currentIp, { timeout: timeoutSec, min_reply: 1 });
+                const mac = res.alive ? await getMac(currentIp) : "-";
 
                 results.push({
                     timestamp: new Date(),
                     ip: currentIp,
                     status: res.alive ? 'online' : 'offline',
-                    latency: res.alive ? res.time + 'ms' : '-'
+                    latency: res.alive ? res.time + ' ms' : '- ms',
+                    mac:mac
                 });
 
             } catch (err) {
                 // Fail-safe: mark as offline on internal error
                 results.push({
                     ip: currentIp,
-                    status: 'offline',
                     latency: 'Err'
                 });
             }
@@ -73,6 +98,7 @@ async function scanNetwork(concurrency = 100, timeoutSec = 1) {
     return results;
 }
 
+
 // 3. Auto-refresh loop
 async function startScanLoop() {
     while (true) {
@@ -84,6 +110,7 @@ async function startScanLoop() {
 }
 
 startScanLoop();
+
 
 
 // --- API ROUTES --- \\
