@@ -18,7 +18,7 @@ async function updateDashboard() {
         <h3>Unknown</h3>
         <p><strong>IP :</strong> ${dev.ip}</p>
         <p><strong>Latence :</strong> ${dev.latency}</p>
-        <p><strong>MAC :</strong> xx:xx:xx:xx:xx</p>
+        <p><strong>MAC :</strong> ${dev.mac}</p>
         <span class="status ${dev.status}">
           ${dev.status === 'online' ? "Online" : "Offline"}
         </span>
