@@ -1,0 +1,7 @@
+{
+  "PORT": 7357,
+  "IP_PREFIX": "172.16",
+  "SUBNET_START": 0,
+  "SUBNET_END": 3,
+  "SCAN_INTERVAL": 10000
+}
