@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/asset/img/ABB-icon.png">
+  <title>ABB | DashNet</title>
+  <link rel="stylesheet" href="/asset/styles/style.css">
+  <link rel="stylesheet" href="/asset/styles/styleSpinner.css">
+</head>
+
+<body>
+  <header>
+    <div id="onlineCount">Online: 0</div>
+    DashNet
+    <select id="filterStatus">
+      <option value="all">All</option>
+      <option value="online" selected>Online</option>
+      <option value="offline">Offline</option>
+    </select>
+  </header>
+
+  <main class="dashboard" id="dashboard">
+    <div id="spinner"></div>
+  </main>
+
+  <footer>
+    &copy; <span id="Auto-Copyright"></span>
+    <img id="ABB-logo" src="/asset/img/ABB_logo.png" alt="ABB logo">
+  </footer>
+</body>
+<script src="/asset/scriptsJS/script.js"></script>
+<script src="/asset/scriptsJS/script-DOM_api.js"></script>
+</html>
