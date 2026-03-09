@@ -3,12 +3,13 @@ const app = express();
 const ping = require("ping");
 const dns = require("dns").promises;
 const { exec } = require("child_process");
+const config = require("./config.json");
 
-const PORT = 7357;
-const IP_PREFIX = "172.16";
-const SUBNET_START = 0;
-const SUBNET_END = 3;
-const SCAN_INTERVAL = 10000;
+const PORT = config.PORT;
+const IP_PREFIX = config.IP_PREFIX;
+const SUBNET_START = config.SUBNET_START;
+const SUBNET_END = config.SUBNET_END;
+const SCAN_INTERVAL = config.SCAN_INTERVAL;
 
 let lastScan = [];
 
