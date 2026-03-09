@@ -12,27 +12,36 @@ header {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
+  position: relative;
 }
 
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  background: #2c3e50;
-  color: white;
-  text-align: center;
-  padding: 0.5rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+/*cont online machine*/
+#onlineCount {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  background: white;
+  color: #27ae60;
 }
 
-#ABB-logo {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
+/*Filter box*/
+#filterStatus {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }
 
 .dashboard {
@@ -74,3 +83,24 @@ footer {
 
 .online { background: #27ae60; }
 .offline { background: #e74c3c; }
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+#ABB-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
