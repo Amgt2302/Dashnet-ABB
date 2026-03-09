@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const ping = require("ping");
+const dns = require("dns").promises;
 const { exec } = require("child_process");
 
 const PORT = 7357;
@@ -48,6 +49,16 @@ function getMac(ip) {
     });
 }
 
+// 1.2 Get Hostname (lookupService)
+async function getName(ip) {
+    try {
+        const result = await dns.lookupService(ip, 0);
+        return result.hostname;
+    } catch (err) {
+        return "Unknow";
+    }
+}
+
 
 // 2. Scan engine
 async function scanNetwork(concurrency = 100, timeoutSec = 1) {
@@ -64,9 +75,11 @@ async function scanNetwork(concurrency = 100, timeoutSec = 1) {
             try {
                 const res = await ping.promise.probe(currentIp, { timeout: timeoutSec, min_reply: 1 });
                 const mac = res.alive ? await getMac(currentIp) : "-";
+                const DNSname = res.alive ? await getName(currentIp) : "Unknown";
 
                 results.push({
                     timestamp: new Date(),
+                    name:DNSname,
                     ip: currentIp,
                     status: res.alive ? 'online' : 'offline',
                     latency: res.alive ? res.time + ' ms' : '- ms',
