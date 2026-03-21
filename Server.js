@@ -5,6 +5,9 @@ const dns = require("dns").promises;
 const { exec } = require("child_process");
 const config = require("./config.json");
 
+const { initDB, updateDevice } = require("./data/DB");
+initDB();
+
 const PORT = config.PORT;
 const IP_PREFIX = config.IP_PREFIX;
 const SUBNET_START = config.SUBNET_START;
@@ -109,6 +112,7 @@ async function scanNetwork(concurrency = 100, timeoutSec = 1) {
     //console.log(`✅ Scan finished in ${duration}s. Devices found: ${results.length}`);
 
     lastScan = results;
+    results.forEach(device => updateDevice(device));
     return results;
 }
 
