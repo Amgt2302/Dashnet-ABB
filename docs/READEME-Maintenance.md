@@ -78,5 +78,4 @@ npm audit fix
 | `sqlite3` | ^5.1.7 | Base de données locale |
 
 ---
----
 *DashNet – Anthony Mignot · BTS CIEL 2026 · ABB*

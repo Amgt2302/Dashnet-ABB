@@ -96,5 +96,4 @@ npm update
 > Pour la maintenance des dépendances → [README-Maintenance.md](README-Maintenance.md)
 
 ---
----
 *DashNet – Anthony Mignot · BTS CIEL 2026 · ABB*

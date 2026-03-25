@@ -46,5 +46,4 @@ L'interface se rafraîchit automatiquement toutes les 5 secondes, sans rechargem
 [github.com/Amgt2302/Dashnet-ABB](https://github.com/Amgt2302/Dashnet-ABB)
 
 ---
-
 *DashNet – Anthony Mignot · BTS CIEL 2026 · ABB*

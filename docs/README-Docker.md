@@ -49,8 +49,6 @@ Ouvrir le navigateur et se rendre sur :
 [localhost:7357](http://localhost:7357)
 
 ---
----
----
 
 ## 🛑 Arrêter le projet
 
@@ -69,5 +67,4 @@ docker stop <ID_CONTAINER>
 > Exemple : `docker stop a3f2c1b9e4d7`
 
 ---
----
-*DashNet – Anthony Mignot · ABB*
+*DashNet – Anthony Mignot · BTS CIEL 2026 · ABB*
